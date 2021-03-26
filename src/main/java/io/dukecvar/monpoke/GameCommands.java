@@ -22,6 +22,11 @@ public class GameCommands {
     public static final String DEFEATED_OUTPUT = "{0} has been defeated!";
     /** Winner output */
     public static final String WINNER_OUTPUT = "{0} is the winner!";
+    /** HEAL in put command */
+    public static final String HEAL_INPUT = "HEAL";
+    /** HEAL output "<MONPOKE> healed <HEALAMOUNT> to <NEWHEALTH>" */
+    public static final String HEAL_OUTPUT = "{0} healed {1} to {2}";
+
 
     /**
      * @param team Team object
@@ -71,5 +76,15 @@ public class GameCommands {
     public static String winnerOutput(Team team) {
         return WINNER_OUTPUT
                 .replace("{0}", team.getId());
+    }
+
+    /**
+     *
+     */
+    public static String healOutput(Monpoke monpoke, int healAmount) {
+        return HEAL_OUTPUT
+                .replace("{0}", monpoke.getId())
+                .replace("{1}", Integer.toString(healAmount))
+                .replace("{2}", Integer.toString(monpoke.getHitPoints()));
     }
 }

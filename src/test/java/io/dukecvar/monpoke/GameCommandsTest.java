@@ -50,4 +50,13 @@ class GameCommandsTest {
                 GameCommands.winnerOutput(team1)
         );
     }
+
+    @Test
+    void healOutput() {
+        Monpoke monpoke = new Monpoke("Rastly", 5, 6);
+        Assertions.assertEquals(
+                "Rastly healed 10 to 5",
+                GameCommands.healOutput(monpoke, 10)
+        );
+    }
 }

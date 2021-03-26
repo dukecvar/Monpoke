@@ -12,6 +12,7 @@ public class Monpoke {
     // members
     private String id;
     private int hitPoints;
+    private int originalHitPoints;
     private int attackPower;
 
     /**
@@ -30,6 +31,7 @@ public class Monpoke {
         }
         this.id = id;
         this.hitPoints = hitPoints;
+        this.originalHitPoints = hitPoints;
         this.attackPower = attackPower;
     }
 
@@ -70,7 +72,28 @@ public class Monpoke {
      * @param hitPoints this character's hit points will be reduced by this ammount
      */
     public void hit(int hitPoints) {
-        this.hitPoints -= hitPoints;
+        if (hitPoints > this.hitPoints) {
+            this.hitPoints = 0;
+        } else {
+            this.hitPoints -= hitPoints;
+        }
+    }
+
+    /**
+     *
+     * @param healPoints
+     */
+    public void heal(int healPoints) {
+        if (hitPoints <= 0) {
+            throw new MonpokeException("Can't heal the dead, sicko");
+        }
+        if(healPoints < 0) {
+            healPoints *= -1;
+        }
+        hitPoints = hitPoints + healPoints;
+        if (hitPoints > originalHitPoints) {
+            hitPoints = originalHitPoints;
+        }
     }
 
     /**

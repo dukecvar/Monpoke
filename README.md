@@ -6,9 +6,12 @@ Run this at your command line
 * Windows: ```.\gradlew.bat build```
 
 ## Running game
-(preface with './' or '.\' for your OS)
-* ```monpoke sample_input.txt```
-* ```monpoke < sample_input.txt```
+* MacOS & Linux
+  * ```./monpoke sample_input.txt```
+  * ```./monpoke < sample_input.txt```
+* WIndows
+  * ```.\monpoke.bat sample_input.txt```
+  * ```.\monpoke.bat < sample_input.txt```
 
 ## Docs
 * Requirement: ./Monpoké_-_Take_Home_Exercise.pdf

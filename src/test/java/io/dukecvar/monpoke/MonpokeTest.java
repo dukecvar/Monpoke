@@ -58,4 +58,51 @@ public class MonpokeTest {
 
     }
 
+    @Test
+    void testTheHealing() {
+        Monpoke mp = new Monpoke("bob", 5, 5);
+
+
+        Assertions.assertEquals(mp.getHitPoints(), 5);
+
+        //hit by 4
+        mp.hit(4);
+        Assertions.assertEquals(mp.getHitPoints(), 1);
+
+        //heal by 2
+        mp.heal(2);
+        Assertions.assertEquals(mp.getHitPoints(), 3);
+
+        //heal by 10 but expect max hitpoints
+        mp.heal(10);
+        Assertions.assertEquals(mp.getHitPoints(), 5);
+
+
+        //hit by 40 which kills the monpoke and try to heal and explode
+        mp.hit(40);
+        Exception exception = Assertions.assertThrows(
+                MonpokeException.class,
+                () -> { mp.heal(10); }
+        );
+        Assertions.assertTrue(
+                exception.getMessage().contains("sicko")
+        );
+
+    }
+
+    @Test
+    void testForNegativeHealing() {
+        Monpoke mp = new Monpoke("bob", 5, 5);
+        mp.hit(4);
+        Assertions.assertEquals(mp.getHitPoints(), 1);
+        mp.heal(-3);
+        Assertions.assertEquals(mp.getHitPoints(), 4);
+    }
+
+    @Test
+    void testForHitsWithMoreThatHitPoints() {
+        Monpoke mp = new Monpoke("bob", 5, 5);
+        mp.hit(1234);
+        Assertions.assertEquals(mp.getHitPoints(), 0);
+    }
 }

@@ -7,6 +7,11 @@ import org.junit.jupiter.api.Test;
 public class TeamTest {
 
     @Test
+    void testCommandExe() {
+
+    }
+
+    @Test
     void addMonPokeTest () {
         Team teamRocket = new Team("Rocket");
         teamRocket.addMonpoke(new Monpoke("Meekachu", 3, 1));

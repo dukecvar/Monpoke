@@ -4,6 +4,7 @@ import io.dukecvar.monpoke.exceptions.MonpokeException;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 /**
@@ -33,6 +34,9 @@ public class Game {
                 break;
             case GameCommands.ATTACK_INPUT:
                 cmdAttack(lineSplit);
+                break;
+            case GameCommands.HEAL_INPUT:
+                cmdHeal(lineSplit);
                 break;
             default:
                 throw new MonpokeException("Invalid command: " + lineSplit[0]);
@@ -96,6 +100,24 @@ public class Game {
         }
         switchActiveTeam();
     }
+
+    /**
+     * Handles HEAL commands
+     * @param lineSplit Command input as an array of strings
+     * @throws MonpokeException if attack command fails
+     */
+    void cmdHeal(String [] lineSplit) {
+        readyToPlay();
+        if (!inBattleStage) {
+            throw new MonpokeException("generic");
+        }
+        int healPoints = Integer.parseInt(lineSplit[1]);
+        Monpoke mp = teams[activeTeam].getChosenMonpoke();
+        mp.heal(healPoints);
+        switchActiveTeam();
+        out(GameCommands.healOutput(mp, healPoints));
+    }
+
 
     // helper methods
 

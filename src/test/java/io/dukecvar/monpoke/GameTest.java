@@ -220,4 +220,36 @@ public class GameTest {
         game.cmdAttack(args);
 
     }
+
+    @Test
+    void cmdHealTest() {
+        Game game = new Game();
+
+        Exception exception = Assertions.assertThrows(
+                MonpokeException.class,
+                () -> {
+                    game.cmdHeal("HEAL 1".split(" "));
+                }
+        );
+
+        // tests
+        //   no teams
+        //   no monpoke on teams
+        //   no monpoke chosen
+
+        game.executeCommand("CREATE Rocket Meekachu 3 1");
+        game.executeCommand("CREATE Rocket Rastly 5 6");
+        game.executeCommand("CREATE Green Smorelax 8 1");
+        game.executeCommand("ICHOOSEYOU Meekachu");
+        game.executeCommand("ICHOOSEYOU Smorelax");
+        game.executeCommand("ATTACK");
+        game.executeCommand("ATTACK");
+        game.executeCommand("ICHOOSEYOU Rastly");
+
+        game.executeCommand("HEAL 10");
+
+        game.executeCommand("ATTACK");
+
+
+    }
 }

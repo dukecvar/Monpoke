@@ -6,3 +6,4 @@ if [ -f $1 ] ; then
 fi
 
 java -classpath ./build/libs/* io.dukecvar.monpoke.Play $file
+#java -classpath ./out/artifacts/monpoke_main_jar/* io.dukecvar.monpoke.Play $file
